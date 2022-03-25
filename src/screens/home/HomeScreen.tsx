@@ -16,43 +16,28 @@ import { styles } from './Styles';
 
 const DATA = [
     {
-        "name": "Mango Cream Slushine",
+        "name": "繁华若梦",
         "rate": "4.8",
         "image": "assets/tea1.jpg",
         "count": "45",
         "price": "13",
         "profile": "A delicious and refreshing frozen mango ice ceram,in hot weather to create the perfect pulp drink! This cream slushine is made from fresh fruit,ice cubes andcream. It will provide you with refreshing throughout the summer~~",
-        "comment": {
-            "image": "assets/user1.jpg",
-            "count": 18,
-            "msg": "I recommend it."
-        }
     },
     {
-        "name": "Hawthorn Tea",
+        "name": "眉目传情",
         "rate": "4.5",
         "image": "assets/tea2.jpg",
         "count": "22",
         "price": "17",
         "profile": "A delicious and refreshing frozen mango ice ceram,in hot weather to create the perfect pulp drink! This cream slushine is made from fresh fruit,ice cubes andcream. It will provide you with refreshing throughout the summer~~",
-        "comment": {
-            "image": "assets/user2.jpg",
-            "count": 12,
-            "msg": "It tastes great."
-        }
     },
     {
-        "name": "Rose Green Tea",
+        "name": "浮光撩影",
         "rate": "4.3",
         "image": "assets/tea3.jpg",
         "count": "65",
         "price": "22",
         "profile": "A delicious and refreshing frozen mango ice ceram,in hot weather to create the perfect pulp drink! This cream slushine is made from fresh fruit,ice cubes andcream. It will provide you with refreshing throughout the summer~~",
-        "comment": {
-            "image": "assets/user3.jpg",
-            "count": 9,
-            "msg": "Not bad, not bad."
-        }
     },
 ];
 
@@ -71,21 +56,28 @@ const Item = ({ val }) => {
                     source={require('D:\\Desktop\\flower-shop\\assets\\images\\flower.jpg')}
                     style={styles.imageStyles}
                 />
-                <View style={styles.textItem}>
-                    <Text style={styles.titleItem}>{val.name}</Text>
-                    <Text style={styles.titleItem}>{val.rate}</Text>
+                <View style={styles.ViewItem}>
+                    <View style={styles.textViewItem}>
+                        <Text style={styles.textItem}>{val.name}</Text>
+                    </View>
+                    <View style={styles.rateViewItem}>
+                        <Text style={styles.rateItem}>评分：{val.rate}分</Text>
+                    </View>
+                    <View style={styles.priceViewItem}>
+                        <Text style={styles.priceItem}>￥ {val.price}</Text>
+                    </View>
                 </View>
             </View>
         </TouchableWithoutFeedback >
+
     );
 }
 
 const HomeScreen = () => {
-    const renderItem = ({ item }) => (
-        <Item val={item} />
-    );
-
+    const navigation = useNavigation();
     const [searchText, setSearchText] = useState('');
+
+    const renderItem = ({ item }) => <Item val={item} />;
 
     return (
         <View style={styles.container}>
@@ -99,6 +91,13 @@ const HomeScreen = () => {
                     onSubmit={() => { }}
                 />
             </View>
+            <TouchableWithoutFeedback
+                onPress={() => navigation.navigate(navigationNames.productScreen)}
+            >
+                <View style={styles.moreListView}>
+                    <Text style={styles.moreListText}>更多 >></Text>
+                </View>
+            </TouchableWithoutFeedback>
             <FlatList
                 data={DATA}
                 renderItem={renderItem}

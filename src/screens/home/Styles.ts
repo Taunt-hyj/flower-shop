@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
     },
     titleView: {
         paddingHorizontal: 20,
-        paddingTop: 80,
+        paddingTop: 70,
+        paddingBottom: 30,
     },
     title: {
         fontSize: 28,
@@ -19,33 +20,55 @@ export const styles = StyleSheet.create({
     SearchContainer: {
         flexDirection: 'row',
         paddingHorizontal: 25,
-        marginVertical: 50,
+        marginVertical: 20,
     },
-    textInput: {
-        fontSize: 18,
-        marginHorizontal: 5,
-        color: colors.dark,
-        flex: 1,
-        height: '100%',
+    moreListView: {
+        padding: 15,
+        alignItems: 'flex-end',
+    },
+    moreListText: {
+        fontSize: 14,
+        color: '#bfbfbf',
     },
     item: {
         marginHorizontal: 10,
     },
-    titleItem: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        padding: 10,
-    },
-    textItem: {
+    ViewItem: {
         position: 'absolute',
         top: '80%',
-        left: '10%',
-        justifyContent: 'center',
-        alignItems: 'center',
+        left: '5%',
         height: '40%',
-        width: '80%',
+        width: '90%',
         backgroundColor: colors.white,
         borderRadius: 25,
+        padding: 40,
+    },
+    textViewItem: {
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        paddingLeft: 10,
+    },
+    textItem: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    rateViewItem: {
+        paddingTop: 15,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+    },
+    rateItem: {
+        fontSize: 13,
+        color: colors.orgin,
+    },
+    priceViewItem: {
+        paddingTop: 15,
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+    },
+    priceItem: {
+        fontSize: 17,
+        color: colors.dark,
     },
     imageStyles: {
         borderRadius: 25,
