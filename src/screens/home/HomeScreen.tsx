@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     titleView: {
         paddingHorizontal: 20,
         paddingTop: 60,
-        paddingBottom: 30,
+        paddingBottom: 10,
     },
     title: {
         fontSize: 28,
