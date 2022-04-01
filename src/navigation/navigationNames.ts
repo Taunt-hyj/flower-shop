@@ -5,6 +5,8 @@ export default {
     loginScreen: 'Login',
     signUpScreen: 'SignUp',
     productScreen: 'Product',
+    changePasswordScreen: 'Change Password',
+    editProfileScreen: 'Edit Profile',
 
     rootScreen: 'rootScreen',
     rootAuthScreen: 'rootAuthScreen',

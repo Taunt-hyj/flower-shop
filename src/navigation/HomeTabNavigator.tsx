@@ -5,9 +5,10 @@ import React from 'react';
 import {
     HomeScreen,
     CartScreen,
-    ProfileScreen
+    ProfileScreen,
+    ChangePasswordScreen,
+    EditProfileScreen,
 } from '@/screens';
-import { colors } from '@/theme';
 import navigationNames from './navigationNames';
 import { tabScreenOptions } from './NavigationHelper';
 
@@ -33,13 +34,12 @@ const CartStackScreen = () => {
             <Stack.Screen
                 name={navigationNames.cartScreen}
                 component={CartScreen}
-                options={{
-                    title: '购物车'
-                }}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     );
 };
+
 
 const ProfileStackScreen = () => {
     return (
@@ -47,9 +47,17 @@ const ProfileStackScreen = () => {
             <Stack.Screen
                 name={navigationNames.profileScreen}
                 component={ProfileScreen}
-                options={{
-                    title: '用户'
-                }}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name={navigationNames.changePasswordScreen}
+                component={ChangePasswordScreen}
+                options={{ headerTitle: '更改密码' }}
+            />
+            <Stack.Screen
+                name={navigationNames.editProfileScreen}
+                component={EditProfileScreen}
+                options={{ headerTitle: '编辑信息' }}
             />
         </Stack.Navigator>
     );
@@ -57,13 +65,7 @@ const ProfileStackScreen = () => {
 
 const HomeTabNavigator = () => {
     return (
-        <Tab.Navigator
-            screenOptions={tabScreenOptions}
-            tabBarOptions={{
-                activeTintColor: colors.primary,
-                inactiveTintColor: colors.dark,
-            }}
-        >
+        <Tab.Navigator screenOptions={tabScreenOptions} >
             <Tab.Screen
                 name={navigationNames.homeTab}
                 component={HomeStackScreen}

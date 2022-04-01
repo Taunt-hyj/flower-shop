@@ -12,6 +12,7 @@ const HomeList = () => {
     const [HomeDate, setHomeDate] = useState([]);
 
     const renderItem = ({ item }) => <HomeListCell val={item} />;
+    const _keyExtractor = (item) => item._id;
 
     useEffect(() => {
         const fetchHome = async () => {
@@ -38,6 +39,7 @@ const HomeList = () => {
                     data={HomeDate}
                     renderItem={renderItem}
                     horizontal={true}
+                    keyExtractor={_keyExtractor}
                     showsHorizontalScrollIndicator={false}
                 />
             </View>

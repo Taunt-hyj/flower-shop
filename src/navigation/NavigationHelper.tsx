@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { ParamListBase, RouteProp } from '@react-navigation/native';
 import React from 'react';
+import { colors } from '@/theme';
 
 import navigationNames from './navigationNames';
 
@@ -25,6 +26,8 @@ export const tabScreenOptions: (props: {
     title: getTabTitle(route.name),
     tabBarShowLabel: false,
     headerShown: false,
+    tabBarActiveTintColor: colors.primary,
+    tabBarInactiveTintColor: colors.dark,
     tabBarIcon: ({ color, size }) => {
         let iconName = '';
         switch (route.name) {

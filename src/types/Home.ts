@@ -1,4 +1,5 @@
 export type Home = {
+    _id: string;
     name: string;
     rate: string;
     image: string;
