@@ -21,13 +21,13 @@ export const AppNavigation = () => {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                    name={navigationNames.rootScreen}
-                    component={HomeTabNavigator}
+                    name={navigationNames.rootAuthScreen}
+                    component={AuthNavigation}
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen
-                    name={navigationNames.rootAuthScreen}
-                    component={AuthNavigation}
+                    name={navigationNames.rootScreen}
+                    component={HomeTabNavigator}
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen

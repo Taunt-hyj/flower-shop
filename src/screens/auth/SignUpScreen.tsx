@@ -38,6 +38,7 @@ const SignUpScreen = () => {
 
     const LoginSchema = Yup.object().shape({
         name: Yup.string()
+            .min(6, '昵称太短了!')
             .required('需要填写昵称'),
         password: Yup.string()
             .min(6, '密码太短了!')
@@ -91,6 +92,7 @@ const SignUpScreen = () => {
                             <TextInput
                                 label="密码"
                                 style={styles.input}
+                                secureTextEntry={true}
                                 onChangeText={handleChange('password')}
                                 onBlur={handleBlur('password')}
                                 value={values.password}
