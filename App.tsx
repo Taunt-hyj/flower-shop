@@ -3,13 +3,16 @@ import { AppNavigation } from '@/navigation';
 import {
   AuthProvider,
   ToastProvider,
+  CartProvider,
 } from '@/contexts';
 
 export default function App() {
   return (
     <ToastProvider>
       <AuthProvider>
-        <AppNavigation />
+        <CartProvider>
+          <AppNavigation />
+        </CartProvider>
       </AuthProvider>
     </ToastProvider>
   );

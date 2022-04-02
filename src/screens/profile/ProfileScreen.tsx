@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Avatar } from '@/components/ui';
-import { useAuth, useToast } from '@/contexts';
+import { useAuth, useToast, useCart } from '@/contexts';
 import { useNavigation } from '@react-navigation/native';
 import navigationNames from '@/navigation/navigationNames';
 import { colors } from '@/theme';
@@ -28,10 +28,13 @@ const ProfileScreen = () => {
     const navigation = useNavigation();
     const { logOut, isAuthenticated, currentUser } = useAuth();
     const { showToast } = useToast();
+    const { clearCart } = useCart();
+
 
     const onLogOut = async () => {
         try {
             await logOut();
+            clearCart();
             navigation.navigate(navigationNames.rootAuthScreen);
         } catch (error) {
             showToast('error', error.message);
