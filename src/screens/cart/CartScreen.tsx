@@ -3,7 +3,8 @@ import navigationNames from '@/navigation/navigationNames';
 import { colors } from '@/theme';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { Button } from '@/components/ui';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { CartList, CartSubTotal } from '@/components/cart';
 
 const CartScreen = () => {
@@ -16,7 +17,9 @@ const CartScreen = () => {
             <View style={styles.emptycontainer}>
                 <Text style={styles.emptyText}> 请登陆后查看~   :( </Text>
                 <Button
-                    color={colors.orgin} title="去登录"
+                    title="请登录"
+                    type="primary"
+                    style={styles.btn}
                     onPress={() => navigation.navigate(navigationNames.rootAuthScreen)}
                 />
             </View>
@@ -28,7 +31,9 @@ const CartScreen = () => {
             <View style={styles.emptycontainer}>
                 <Text style={styles.emptyText}> 你的购物车还是空的哦~   :( </Text>
                 <Button
-                    color={colors.orgin} title="去购物"
+                    title="去购物"
+                    type="primary"
+                    style={styles.btn}
                     onPress={() => navigation.navigate(navigationNames.homeTab)}
                 />
             </View>
@@ -100,5 +105,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    btn: {
+        width: 150,
     },
 });

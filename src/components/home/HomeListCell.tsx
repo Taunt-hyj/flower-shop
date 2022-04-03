@@ -25,7 +25,7 @@ const HomeListCell = ({ val }: Props) => {
 
     return (
         <TouchableWithoutFeedback
-            onPress={() => navigation.navigate(navigationNames.productScreen)}
+            onPress={() => navigation.navigate(navigationNames.productScreen, { id: "624834871c2fdaeeb2d9babf" })}
         >
             <View style={[styles.item, { height: windowHeight * 0.6, width: windowWidth * 0.85 }]}>
                 <Image
@@ -51,17 +51,15 @@ const HomeListCell = ({ val }: Props) => {
 
 export default HomeListCell;
 
-
-
-
 export const styles = StyleSheet.create({
     item: {
         marginHorizontal: 10,
     },
     imageStyles: {
-        borderRadius: 25,
         height: '85%',
-        width: '100%'
+        width: '100%',
+        resizeMode: 'cover',
+        borderRadius: 25,
     },
     ViewItem: {
         position: 'absolute',
@@ -70,8 +68,8 @@ export const styles = StyleSheet.create({
         height: '30%',
         width: '90%',
         backgroundColor: colors.white,
-        borderRadius: 25,
         padding: 30,
+        borderRadius: 25,
     },
     textViewItem: {
         justifyContent: 'center',

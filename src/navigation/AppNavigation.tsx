@@ -33,7 +33,6 @@ export const AppNavigation = () => {
                 <Stack.Screen
                     name={navigationNames.productScreen}
                     component={ProductScreen}
-                    options={{ headerTitle: '商品页' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

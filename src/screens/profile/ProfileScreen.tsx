@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Avatar } from '@/components/ui';
+import { Avatar, Button } from '@/components/ui';
 import { useAuth, useToast, useCart } from '@/contexts';
 import { useNavigation } from '@react-navigation/native';
 import navigationNames from '@/navigation/navigationNames';
@@ -46,7 +46,9 @@ const ProfileScreen = () => {
             <View style={styles.emptycontainer}>
                 <Text style={styles.emptyText}> 请登陆后查看~   :( </Text>
                 <Button
-                    color={colors.orgin} title="去登录"
+                    title="请登录"
+                    type="primary"
+                    style={styles.btn}
                     onPress={() => navigation.navigate(navigationNames.rootAuthScreen)}
                 />
             </View>
@@ -125,6 +127,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    btn: {
+        width: 150,
     },
     wrapper: {
         justifyContent: 'center',
