@@ -6,3 +6,5 @@ export { default as ProductScreen } from './product'
 export { default as EditProfileScreen } from './profile/EditProfileScreen';
 export { default as ChangePasswordScreen } from './profile/ChangePasswordScreen';
 export { default as ProfileScreen } from './profile/ProfileScreen';
+export { default as SearchScreen } from './search';
+export { default as OrderScreen } from './order';

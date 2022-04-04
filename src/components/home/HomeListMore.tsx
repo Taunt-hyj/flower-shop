@@ -4,7 +4,7 @@ import {
     Text,
     StyleSheet,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import navigationNames from '@/navigation/navigationNames';
@@ -15,7 +15,7 @@ const HomeListMore = () => {
 
     return (
         <TouchableWithoutFeedback
-            onPress={() => navigation.navigate(navigationNames.productScreen)}
+            onPress={() => navigation.navigate(navigationNames.searchScreen)}
         >
             <View style={styles.moreListView}>
                 <Text style={styles.moreListText}>更多 {'>'}{'>'}</Text>

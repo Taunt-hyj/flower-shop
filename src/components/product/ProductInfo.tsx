@@ -13,15 +13,14 @@ const ProductInfo: React.FC<Props> = ({ product }) => {
         <View style={styles.container}>
             <View style={styles.imgContainer}>
                 <Image
-                    // source={{ uri: product.imageURL }}
-                    source={require('D:\\Desktop\\flower-shop\\assets\\images\\flower.jpg')}
+                    source={{ uri: product.imageURL }}
                     style={styles.productImg}
                 />
             </View>
             <View style={styles.info}>
                 <Text style={styles.name}>{product.name}</Text>
+                <Text style={styles.desc}>      {product.description}</Text>
                 <Text style={styles.price}>{formatPrice(product.price)}</Text>
-                <Text style={styles.desc}>{product.description}</Text>
             </View>
         </View>
     );
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         width: '100%',
         height: 300,
-        borderBottomLeftRadius: 50,
+        borderBottomLeftRadius: 40,
         overflow: 'hidden',
     },
     productImg: {
@@ -49,18 +48,20 @@ const styles = StyleSheet.create({
         padding: 30,
     },
     name: {
-        fontSize: 30,
+        paddingLeft: 10,
+        fontSize: 25,
         fontWeight: 'bold',
     },
-    price: {
-        color: colors.primary,
-        fontSize: 20,
-        paddingTop: 10,
-        alignItems: 'flex-end',
-    },
     desc: {
-        paddingTop: 10,
-        fontSize: 15,
+        paddingTop: 15,
+        fontSize: 13,
         color: '#aaa',
     },
+    price: {
+        paddingTop: 15,
+        color: colors.primary,
+        fontSize: 20,
+        textAlign: 'right',
+    },
+
 });

@@ -12,7 +12,7 @@ const ICON_SIZE = 20;
 const menus = [
     {
         title: '我的订单',
-        to: navigationNames.editProfileScreen,
+        to: navigationNames.orderScreen,
     },
     {
         title: '编辑资料',

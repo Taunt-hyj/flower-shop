@@ -8,10 +8,19 @@ import React, { useState } from 'react';
 import { SearchForm } from '@/components/search';
 import { HomeList, HomeListMore } from '@/components/home'
 import { colors } from '@/theme';
+import { useNavigation } from '@react-navigation/native';
+import navigationNames from '@/navigation/navigationNames';
 
 
 const HomeScreen = () => {
     const [searchText, setSearchText] = useState('');
+
+    const navigation = useNavigation();
+
+    const handleSubmit = () => {
+        navigation.navigate(navigationNames.searchScreen, { keyword: searchText });
+        setSearchText('');
+    };
 
     return (
         <View style={styles.container}>
@@ -22,7 +31,7 @@ const HomeScreen = () => {
                 <SearchForm
                     value={searchText}
                     onChangeText={setSearchText}
-                    onSubmit={() => { }}
+                    onSubmit={handleSubmit}
                 />
             </View>
             <HomeListMore />

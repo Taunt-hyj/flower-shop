@@ -7,6 +7,8 @@ export default {
     productScreen: 'Product',
     changePasswordScreen: 'Change Password',
     editProfileScreen: 'Edit Profile',
+    searchScreen: 'Search',
+    orderScreen: 'Order',
 
     rootScreen: 'rootScreen',
     rootAuthScreen: 'rootAuthScreen',

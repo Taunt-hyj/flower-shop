@@ -12,7 +12,7 @@ interface Props {
 const SearchForm: React.FC<Props> = ({ onSubmit, value, onChangeText }) => {
     return (
         <View style={styles.searchContainer}>
-            <EvilIcons name="search" size={24} color="black" />
+            <EvilIcons name="search" size={24} color="gray" />
             <TextInput
                 placeholder="搜索"
                 style={styles.textInput}

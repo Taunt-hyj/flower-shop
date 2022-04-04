@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { HomeService } from '@/services/HomeService';
 import HomeListCell from './HomeListCell'
 
-const HomeList = () => {
+const HomeList = ({ }) => {
     const [LoadingHome, setLoadingHome] = useState(false);
     const [HomeDate, setHomeDate] = useState([]);
 
@@ -19,7 +19,7 @@ const HomeList = () => {
             try {
                 setLoadingHome(true);
                 const results = await HomeService.getHome();
-                setHomeDate(results);
+                setHomeDate(results.products);
             } catch (error) {
                 console.log(error);
             } finally {

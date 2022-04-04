@@ -69,13 +69,16 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
     return (
         <TouchableOpacity key={cartItem._id} onPress={() => handleNavigate(cartItem.product._id)}>
             <View style={styles.cartItem}>
-                <Image // source={{ uri: cartItem.product.imageURL }}
-                    source={require('D:\\Desktop\\flower-shop\\assets\\images\\flower.jpg')}
+                <Image
+                    source={{ uri: cartItem.product.imageURL }}
                     style={styles.image}
                 />
                 <View style={styles.info}>
                     <View style={styles.Item}>
-                        <Text style={styles.title}> {cartItem.product.name} </Text>
+                        <Text
+                            style={styles.title}
+                            numberOfLines={1}
+                        > {cartItem.product.name} </Text>
                         <TouchableOpacity onPress={() => handleRemoveCart(cartItem._id)}>
                             <AntDesign name="delete" size={15} color="black" />
                         </TouchableOpacity>
@@ -124,6 +127,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: '700',
+        width: 150,
     },
     price: {
         color: colors.primary,

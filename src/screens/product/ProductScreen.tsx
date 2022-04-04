@@ -86,7 +86,7 @@ const ProductScreen = () => {
         if (!product) return;
         try {
             await addCartItem(product, qty);
-            showToast('success', 'Successfully added to your cart');
+            showToast('success', '加入购物车成功！');
         } catch (error) {
             showToast('error', 'Error in adding cart. Please try again later');
         }

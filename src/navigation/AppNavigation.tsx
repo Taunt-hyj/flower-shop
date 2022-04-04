@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNavigation from './AuthNavigation';
 import HomeTabNavigator from './HomeTabNavigator';
 import navigationNames from './navigationNames';
-import { ProductScreen } from '@/screens';
+import { ProductScreen, SearchScreen } from '@/screens';
 import { AuthLoading } from '@/components/auth';
 import { useAuth } from '@/contexts';
 
@@ -33,6 +33,12 @@ export const AppNavigation = () => {
                 <Stack.Screen
                     name={navigationNames.productScreen}
                     component={ProductScreen}
+                />
+
+                <Stack.Screen
+                    name={navigationNames.searchScreen}
+                    component={SearchScreen}
+                    options={{ headerShown: false }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
