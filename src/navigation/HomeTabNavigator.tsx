@@ -8,7 +8,6 @@ import {
     ProfileScreen,
     ChangePasswordScreen,
     EditProfileScreen,
-    OrderScreen,
 } from '@/screens';
 import navigationNames from './navigationNames';
 import { tabScreenOptions } from './NavigationHelper';
@@ -59,11 +58,6 @@ const ProfileStackScreen = () => {
                 name={navigationNames.editProfileScreen}
                 component={EditProfileScreen}
                 options={{ headerTitle: '编辑信息' }}
-            />
-            <Stack.Screen
-                name={navigationNames.orderScreen}
-                component={OrderScreen}
-                options={{ headerTitle: '订单' }}
             />
         </Stack.Navigator>
     );

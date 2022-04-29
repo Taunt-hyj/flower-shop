@@ -8,3 +8,9 @@ export { default as ChangePasswordScreen } from './profile/ChangePasswordScreen'
 export { default as ProfileScreen } from './profile/ProfileScreen';
 export { default as SearchScreen } from './search';
 export { default as OrderScreen } from './order';
+export { default as CheckoutScreen } from './checkout';
+export { default as AddressScreen } from './address/AddressScreen';
+export { default as EditAddressScreen } from './address/EditAddressScreen';
+export { default as PayScreen } from './checkout/PayScreen';
+
+

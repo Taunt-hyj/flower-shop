@@ -13,11 +13,11 @@ interface Props {
 
 const categoryFilterItems = [
     {
-        value: 'Men',
+        value: '鲜花',
         name: 'men',
     },
     {
-        value: 'Women',
+        value: '花架',
         name: 'women',
     },
 ];

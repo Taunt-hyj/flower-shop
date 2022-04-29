@@ -3,5 +3,5 @@ export const getFirstLetter = (word: string): string => {
 };
 
 export const formatDate = (date: Date): string => {
-    return new Date(date).toLocaleDateString('en-US');
+    return new Date(date).toLocaleDateString();
 };

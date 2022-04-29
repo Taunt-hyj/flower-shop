@@ -6,13 +6,14 @@ import { useAuth, useToast, useCart } from '@/contexts';
 import { useNavigation } from '@react-navigation/native';
 import navigationNames from '@/navigation/navigationNames';
 import { colors } from '@/theme';
+import { OrderCard } from '@/components/order';
 
 const ICON_SIZE = 20;
 
 const menus = [
     {
-        title: '我的订单',
-        to: navigationNames.orderScreen,
+        title: '修改地址',
+        to: navigationNames.addressScreen,
     },
     {
         title: '编辑资料',
@@ -74,6 +75,9 @@ const ProfileScreen = () => {
                     <Avatar user={currentUser} />
                     <Text style={styles.name}>{currentUser.name}</Text>
                 </View>
+                <View style={{ paddingVertical: 5 }}>
+                    <OrderCard />
+                </View>
                 <View style={styles.menu}>{menuListElement}</View>
             </View>
             <View style={styles.bottomContainer}>
@@ -104,12 +108,12 @@ const styles = StyleSheet.create({
     },
     menu: {
         marginVertical: 10,
-        marginTop: 40,
+        marginTop: 20,
+        backgroundColor: colors.white,
+        borderRadius: 20,
     },
     menuList: {
         paddingVertical: 15,
-        borderBottomColor: colors.gray,
-        borderBottomWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 10,

@@ -4,7 +4,7 @@ import { colors } from '@/theme';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button } from '@/components/ui';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { CartList, CartSubTotal } from '@/components/cart';
 
 const CartScreen = () => {
@@ -40,6 +40,7 @@ const CartScreen = () => {
         );
     }
 
+
     return (
         <View style={styles.container}>
             <View style={styles.titleView}>
@@ -50,11 +51,11 @@ const CartScreen = () => {
             </View>
             <View style={styles.bottomContainer}>
                 <CartSubTotal />
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={() => navigation.navigate(navigationNames.checkoutScreen)}>
                     <Text style={styles.subtext}> 购买 </Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </View >
     );
 };
 
