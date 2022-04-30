@@ -11,18 +11,17 @@ import {
 } from "react-native";
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import navigationNames from '@/navigation/navigationNames';
-import { CartSubTotal } from '@/components/cart';
 import Checkbox from 'expo-checkbox';
 import { CheckoutService } from '@/services';
-
-
+import { AuthService } from '@/services';
+import { useAuth } from '@/contexts';
 
 const PayScreen = () => {
-
+    const { updateCurrentUser } = useAuth();
     const [indexItem, setIndexItem] = useState(0);
     const navigation = useNavigation();
     const route = useRoute<RouteProp<Record<string, any>, string>>();
-    const _id = route.params.results._id;
+    const _id = route?.params?.results?._id;
 
     navigation.setOptions({
         title: '',
@@ -34,7 +33,6 @@ const PayScreen = () => {
     };
     const _renderItem = (label: string, index: number) => {
         return (
-
             <TouchableOpacity activeOpacity={1} onPress={() => _onItemClick(index)}>
                 <View style={styles.checkBox}>
                     {
@@ -55,8 +53,15 @@ const PayScreen = () => {
 
     const addCartItem = async () => {
         try {
-            await CheckoutService.updateOrderItem(_id);
-            navigation.navigate(navigationNames.cartScreen)
+            if (_id) {
+                await CheckoutService.updateOrderItem(_id);
+                navigation.navigate(navigationNames.cartScreen)
+            }
+            else {
+                const data = await AuthService.changeRole();
+                await updateCurrentUser(data.user)
+                navigation.navigate(navigationNames.profileScreen)
+            }
         } catch (error) {
             Alert.alert('Error', error.message);
         }
@@ -74,7 +79,7 @@ const PayScreen = () => {
                 {_renderItem(' 微信 ', 1)}
             </ScrollView >
             <View style={styles.bottomContainer}>
-                <TouchableOpacity onPress={addCartItem}>
+                <TouchableOpacity activeOpacity={0.8} onPress={addCartItem}>
                     <Text style={styles.subtext}> 付款 </Text>
                 </TouchableOpacity>
             </View>

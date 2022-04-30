@@ -13,12 +13,22 @@ import { colors } from '@/theme';
 import navigationNames from '@/navigation/navigationNames';
 import { AddressButton } from '@/components/address';
 import { CartSubTotal } from '@/components/cart';
+import { useToast } from '@/contexts';
 import { CheckoutService } from '@/services';
+
+interface RouteParams {
+    addressItem: AddressItem;
+}
 
 const CheckoutScreen = () => {
     const { clearCart } = useCart();
 
     const navigation = useNavigation();
+
+    const { showToast } = useToast();
+
+    const route = useRoute<RouteProp<Record<string, RouteParams>, string>>();
+    let item = route?.params?.addressItem;
 
     navigation.setOptions({
         title: '',
@@ -37,9 +47,14 @@ const CheckoutScreen = () => {
 
     const addCartItem = async () => {
         try {
-            const results = await CheckoutService.addOrderItem();
-            navigation.navigate(navigationNames.payScreen, { results });
-            clearCart();
+            if (item) {
+                const results = await CheckoutService.addOrderItem();
+                navigation.navigate(navigationNames.payScreen, { results });
+                clearCart();
+            }
+            else {
+                showToast('error', '请选择收货地址！');
+            }
         } catch (error) {
             Alert.alert('Error', error.message);
         }
@@ -62,7 +77,7 @@ const CheckoutScreen = () => {
             </ScrollView >
             <View style={styles.bottomContainer}>
                 <CartSubTotal />
-                <TouchableOpacity onPress={addCartItem}>
+                <TouchableOpacity activeOpacity={0.8} onPress={addCartItem}>
                     <Text style={styles.subtext}> 提交订单 </Text>
                 </TouchableOpacity>
             </View>

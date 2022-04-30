@@ -86,6 +86,20 @@ export const changePassword = async (
     }
 };
 
+export const changeRole = async (): Promise<UserData> => {
+    try {
+        const url = `/auth/change-role`;
+        const { data } = await apiClient.patch(url);
+        const userData: UserData = {
+            user: data.data.user,
+            token: data.data.token,
+        };
+        return userData;
+    } catch (error) {
+        throw new Error(catchError(error));
+    }
+};
+
 export const updateProfile = async (
     userId: string,
     userFields: UserFields
@@ -107,5 +121,6 @@ export const AuthService = {
     login,
     signUp,
     changePassword,
+    changeRole,
     updateProfile,
 };

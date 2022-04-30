@@ -26,9 +26,18 @@ const EditAddressScreen = () => {
     const [address, setaddress] = useState(initialState);
     const [submitting, setSubmitting] = useState(false);
 
+    const isPhoneNumber = (tel) => {
+        const reg = /^0?1[3|4|5|6|7|8][0-9]\d{8}$/;
+        return reg.test(tel);
+    }
+
     const handleSubmit = () => {
         if (!address.address || !address.name || !address.phone) {
             showToast('error', '请填写完整！');
+            return;
+        }
+        if (!isPhoneNumber(address.phone)) {
+            showToast('error', '手机号格式错误！');
             return;
         }
         handleChangePassword();

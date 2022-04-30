@@ -108,8 +108,9 @@ export const AuthProvider: React.FC = ({ children }) => {
         }
     };
 
-    const updateCurrentUser = (user: User) => {
+    const updateCurrentUser = async (user: User) => {
         dispatch({ type: UPDATE_CURRENT_USER, payload: { user } });
+        await AsyncStorage.setItem('user', JSON.stringify(user));
     };
 
     return (

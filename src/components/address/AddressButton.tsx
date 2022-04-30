@@ -26,6 +26,7 @@ const AddressButton = () => {
         );
     }
 
+
     const AddressOwn = (data) => {
         return (
             <View style={styles.emptyOwn}>
@@ -43,7 +44,7 @@ const AddressButton = () => {
     }
 
     return (
-        <TouchableOpacity onPress={_chooseAddress}>
+        <TouchableOpacity activeOpacity={0.8} onPress={_chooseAddress}>
             <View style={styles.container}>
                 {item ? <AddressOwn data={item} /> : <AddressEmpty />}
             </View>

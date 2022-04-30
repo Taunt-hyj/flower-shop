@@ -72,7 +72,6 @@ export const AddressProvider: React.FC = ({ children }) => {
     };
 
     const removeAddressItem = async (addressItem: AddressItem) => {
-        console.log(addressItem)
         await AddressService.removeAddressItem(addressItem._id);
         dispatch({ type: REMOVE_ADDRESS, payload: addressItem });
     };

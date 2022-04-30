@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
         left: '5%',
         height: '30%',
         width: '90%',
-        backgroundColor: colors.white,
+        backgroundColor: '#fafafa',
         padding: 30,
         borderRadius: 25,
     },
@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     desItem: {
-        fontSize: 10,
+        fontSize: 12,
         color: '#aaa',
 
     },

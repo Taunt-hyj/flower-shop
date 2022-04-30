@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import {
     View,
     Text,
+    TouchableWithoutFeedback,
     TouchableOpacity,
     StyleSheet,
     Alert,
@@ -42,10 +43,10 @@ const AddressItems: React.FC<Props> = ({ addressItem, choose }) => {
     return (
         <View style={styles.container}>
             <View style={styles.emptyOwn}>
-                <TouchableOpacity key={addressItem._id} onPress={() => goToCheck(addressItem)}>
+                <TouchableWithoutFeedback key={addressItem._id} onPress={() => goToCheck(addressItem)}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ padding: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
-                            <TouchableOpacity key={addressItem._id} onPress={() => handleNavigate(addressItem)}>
+                            <TouchableOpacity activeOpacity={0.8} key={addressItem._id} onPress={() => handleNavigate(addressItem)}>
                                 <AntDesign name="edit" size={20} color="black" />
                             </TouchableOpacity >
                         </View>
@@ -54,12 +55,12 @@ const AddressItems: React.FC<Props> = ({ addressItem, choose }) => {
                             <Text numberOfLines={1} style={{ fontSize: 14, paddingVertical: 3 }}>{addressItem.name}    {addressItem.phone}</Text>
                         </View>
                         <View style={{ padding: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
-                            <TouchableOpacity onPress={() => handleRemoveCart(addressItem)}>
+                            <TouchableOpacity activeOpacity={0.8} onPress={() => handleRemoveCart(addressItem)}>
                                 <AntDesign name="delete" size={20} color="red" />
                             </TouchableOpacity>
                         </View>
                     </View>
-                </TouchableOpacity >
+                </TouchableWithoutFeedback >
             </View >
         </View >
 

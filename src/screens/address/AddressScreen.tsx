@@ -25,7 +25,7 @@ const AddressScreen = () => {
             <View style={styles.addressList}>
                 <AddressList choose={choose} />
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate(navigationNames.editAddressScreen)}>
+            <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate(navigationNames.editAddressScreen)}>
                 <View style={styles.bottomContainer}>
                     <Text style={styles.subtext}> 新增地址 </Text>
 

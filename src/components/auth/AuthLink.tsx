@@ -20,12 +20,12 @@ const AuthLink = ({ type }: Props) => {
 
     const link =
         type === 'login' ? (
-            <TouchableOpacity style={styles.linkContainer} onPress={handleNavigate}>
+            <TouchableOpacity activeOpacity={0.8} style={styles.linkContainer} onPress={handleNavigate}>
                 <Text> 没有账户? </Text>
                 <Text> 去注册。</Text>
             </TouchableOpacity>
         ) : (
-            <TouchableOpacity style={styles.linkContainer} onPress={handleNavigate}>
+            <TouchableOpacity activeOpacity={0.8} style={styles.linkContainer} onPress={handleNavigate}>
                 <Text> 已经拥有账户? </Text>
                 <Text> 去登陆。</Text>
             </TouchableOpacity>

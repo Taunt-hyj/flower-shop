@@ -28,6 +28,7 @@ const InputQuantity: React.FC<Props> = ({
     return (
         <View style={styles.qtyContainer}>
             <TouchableOpacity
+                activeOpacity={0.8}
                 style={[
                     styles.qtyBtn,
                     { borderLeftWidth: 1, borderLeftColor: '#d5d5d5' },
@@ -46,6 +47,7 @@ const InputQuantity: React.FC<Props> = ({
                 onChangeText={handleChangeText}
             />
             <TouchableOpacity
+                activeOpacity={0.8}
                 style={[
                     styles.qtyBtn,
                     { borderRightWidth: 1, borderRightColor: '#d5d5d5' },

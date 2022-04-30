@@ -20,7 +20,8 @@ const ProductItem: React.FC<Props> = ({ product }) => {
     };
 
     return (
-        <TouchableOpacity onPress={handleNavigate} style={styles.list}>
+        <TouchableOpacity activeOpacity={0.8}
+            onPress={handleNavigate} style={styles.list}>
             <View style={styles.listContent}>
                 <Image
                     source={{ uri: product.imageURL }}
@@ -50,24 +51,28 @@ const styles = StyleSheet.create({
     },
     listContent: {
         marginHorizontal: 5,
+        backgroundColor: colors.white,
+        borderRadius: 10,
     },
     listImg: {
         width: '100%',
         height: 200,
-        borderRadius: 20,
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+        overflow: 'hidden',
     },
     info: {
         paddingHorizontal: 10,
-        paddingTop: 15,
+        paddingVertical: 8,
     },
     name: {
         fontSize: 14,
     },
     price: {
-        paddingTop: 10,
+        paddingTop: 5,
         paddingRight: 10,
         textAlign: 'right',
-        fontSize: 15,
+        fontSize: 14,
         color: colors.primary,
         fontWeight: '700',
     },

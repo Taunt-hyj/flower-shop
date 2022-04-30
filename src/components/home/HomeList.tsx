@@ -1,6 +1,7 @@
 import {
     View,
     FlatList,
+    Dimensions,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
@@ -13,7 +14,8 @@ const HomeList = ({ }) => {
 
     const renderItem = ({ item }) => <HomeListCell val={item} />;
     const _keyExtractor = (item) => item._id;
-
+    const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
     useEffect(() => {
         const fetchHome = async () => {
             try {
@@ -34,7 +36,7 @@ const HomeList = ({ }) => {
     }
     else {
         return (
-            <View>
+            <View style={{ height: windowHeight * 0.6, width: windowWidth * 0.95 }}>
                 <FlatList
                     data={HomeDate}
                     renderItem={renderItem}

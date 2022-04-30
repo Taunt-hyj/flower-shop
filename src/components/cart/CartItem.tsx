@@ -67,19 +67,22 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
     };
 
     return (
-        <TouchableOpacity key={cartItem._id} onPress={() => handleNavigate(cartItem.product._id)}>
+        <TouchableOpacity activeOpacity={0.8} key={cartItem._id} onPress={() => handleNavigate(cartItem.product._id)}>
             <View style={styles.cartItem}>
-                <Image
-                    source={{ uri: cartItem.product.imageURL }}
-                    style={styles.image}
-                />
+                <View style={styles.imageView}>
+                    <Image
+                        source={{ uri: cartItem.product.imageURL }}
+                        style={styles.image}
+                    />
+                </View>
+
                 <View style={styles.info}>
                     <View style={styles.Item}>
                         <Text
                             style={styles.title}
                             numberOfLines={1}
                         > {cartItem.product.name} </Text>
-                        <TouchableOpacity onPress={() => handleRemoveCart(cartItem._id)}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => handleRemoveCart(cartItem._id)}>
                             <AntDesign name="delete" size={15} color="black" />
                         </TouchableOpacity>
                     </View>
@@ -102,22 +105,25 @@ const CartItem: React.FC<Props> = ({ cartItem }) => {
 export default CartItem;
 
 const styles = StyleSheet.create({
-    container: {
-        paddingVertical: 15,
+    cartItem: {
+        flexDirection: 'row',
+        marginBottom: 10,
+        backgroundColor: colors.white,
+        borderRadius: 10,
+    },
+    imageView: {
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+        overflow: 'hidden',
     },
     image: {
         width: 120,
         height: 120,
-        borderRadius: 15,
-    },
-    cartItem: {
-        flexDirection: 'row',
-        marginBottom: 20,
     },
     info: {
         flex: 1,
-        paddingHorizontal: 10,
-        paddingVertical: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 15,
         justifyContent: 'space-between',
     },
     Item: {

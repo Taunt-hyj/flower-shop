@@ -1,6 +1,6 @@
 import { colors } from '@/theme';
 import * as React from 'react';
-import { useWindowDimensions } from 'react-native';
+import { useWindowDimensions, View } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { OrderList } from '@/components/order';
@@ -45,19 +45,28 @@ const CheckoutScreen = () => {
 
     const [orders, setOrders] = useState<Order[]>([]);
     const [error, setError] = useState<any>(null);
+    const [LoadingOrder, setLoadingOrder] = useState(false);
+
     const fetchOrders = async () => {
         try {
+            setLoadingOrder(true);
             const results = await OrderService.getOrders();
             setOrders(results);
         } catch (error) {
             setError(error.message);
         } finally {
+            setLoadingOrder(false);
         }
     };
+
 
     useEffect(() => {
         fetchOrders();
     }, []);
+
+    if (LoadingOrder) {
+        return <View />
+    }
 
     if (error) {
         return <ErrorMessage message={error} />;
@@ -70,7 +79,6 @@ const CheckoutScreen = () => {
                 return <OrderList orders={orders} />;
             case 'pay':
                 goods = orders.filter((value) => value.state === 'pay');
-                console.log(goods)
                 return <OrderList orders={goods} />;
             case 'goods':
                 goods = orders.filter((value) => value.state === 'goods');

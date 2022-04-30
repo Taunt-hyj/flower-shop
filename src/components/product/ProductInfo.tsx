@@ -11,16 +11,33 @@ interface Props {
 const ProductInfo: React.FC<Props> = ({ product }) => {
     return (
         <View style={styles.container}>
-            <View style={styles.imgContainer}>
-                <Image
-                    source={{ uri: product.imageURL }}
-                    style={styles.productImg}
-                />
+            <View style={{ backgroundColor: colors.white, borderRadius: 10 }}>
+                <View style={styles.imgContainer}>
+                    <Image
+                        source={{ uri: product.imageURL }}
+                        style={styles.productImg}
+                    />
+                </View>
+                <View style={styles.info}>
+                    <Text style={styles.name}>{product.name}</Text>
+                    <Text style={styles.price}>{formatPrice(product.price)}</Text>
+                </View>
             </View>
-            <View style={styles.info}>
-                <Text style={styles.name}>{product.name}</Text>
-                <Text style={styles.desc}>      {product.description}</Text>
-                <Text style={styles.price}>{formatPrice(product.price)}</Text>
+            <View style={{ paddingVertical: 10 }}>
+                <View style={{ paddingHorizontal: 10, paddingVertical: 10, borderRadius: 10, backgroundColor: colors.white }}>
+                    <View style={{ flexDirection: 'row', padding: 5 }}>
+                        <Text style={{ fontSize: 13, color: colors.dark }}>描述：</Text>
+                        <Text style={{ fontSize: 13, color: '#aaa', width: '93%' }}>{product.description}</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', padding: 5 }}>
+                        <Text style={{ fontSize: 13, color: colors.dark }}>月售：</Text>
+                        <Text style={styles.desc}>28</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', padding: 5 }}>
+                        <Text style={{ fontSize: 13, color: colors.dark }}>配送：</Text>
+                        <Text style={styles.desc}>现在下单，预计最快约 14:42 送达</Text>
+                    </View>
+                </View>
             </View>
         </View>
     );
@@ -45,20 +62,19 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     info: {
-        padding: 30,
+        padding: 20,
     },
     name: {
         paddingLeft: 10,
+        paddingTop: 10,
         fontSize: 25,
         fontWeight: 'bold',
     },
     desc: {
-        paddingTop: 15,
         fontSize: 13,
         color: '#aaa',
     },
     price: {
-        paddingTop: 15,
         color: colors.primary,
         fontSize: 20,
         textAlign: 'right',

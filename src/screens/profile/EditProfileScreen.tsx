@@ -107,6 +107,7 @@ const EditProfileScreen = () => {
             <ImageBackground style={styles.imgBg} source={{ uri: imageUri }}>
                 <View style={styles.overlay}>
                     <TouchableOpacity
+                        activeOpacity={0.8}
                         style={styles.btnUploadImage}
                         onPress={onImageChange}
                     >

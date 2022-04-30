@@ -2,15 +2,18 @@ import {
     ProductInputQuantity,
     ProductInfo,
     ProductSkeleton,
+    ProductRelated,
 } from '@/components/product';
 import { Button, ErrorMessage } from '@/components/ui';
 import { useAuth, useCart, useToast } from '@/contexts';
 import navigationNames from '@/navigation/navigationNames';
 import { ProductService } from '@/services';
+import { colors } from '@/theme';
 import { Product, Products } from '@/types';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { Animated, StyleSheet, View, StatusBar } from 'react-native';
+import { Linking, Animated, StyleSheet, View, Alert, TouchableWithoutFeedback } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 interface RouteParams {
     id: string;
@@ -27,6 +30,7 @@ const ProductScreen = () => {
     const productId = route.params.id;
 
     const [product, setProduct] = useState<Product | null>(null);
+    const [relatedProducts, setRelatedProducts] = useState<Products>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [qty, setQty] = useState(1);
     const [error, setError] = useState<string | null>(null);
@@ -44,6 +48,7 @@ const ProductScreen = () => {
                 setIsLoading(true);
                 const results = await ProductService.getProduct(productId);
                 setProduct(results.product);
+                setRelatedProducts(results.relatedProducts);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -102,6 +107,22 @@ const ProductScreen = () => {
         );
     }
 
+
+    const callPhone = (phone) => {
+        const tel = `tel:${phone}`;
+        Alert.alert('联系方式', phone, [
+            { text: '取消' },
+            {
+                text: '确定',
+                onPress: () => {
+                    Linking.canOpenURL(tel).then((supported) => {
+                        if (!supported) showToast('error', `您的设备不支持该功能，请手动拨打 ${phone}`)
+                        else return Linking.openURL(tel)
+                    }).catch(error => showToast('error', error))
+                }
+            }])
+    }
+
     return (
         <>
             <View style={styles.main}>
@@ -113,19 +134,28 @@ const ProductScreen = () => {
                     )}
                 >
                     <ProductInfo product={product} />
+                    <ProductRelated products={relatedProducts} />
+
                 </Animated.ScrollView>
                 <View style={styles.bottom}>
-                    <ProductInputQuantity
-                        value={qty}
-                        handleButtonPressed={handleButtonClickQty}
-                        onChangeText={handleChangeQty}
-                    />
-                    <Button
-                        title="加入购物车"
-                        type="primary"
-                        style={styles.btnAddCart}
-                        onPress={handleAddToCart}
-                    />
+                    <TouchableWithoutFeedback onPress={() => callPhone('13456787654')}>
+                        <AntDesign name="customerservice" size={24} color="black" />
+                    </TouchableWithoutFeedback>
+                    <View style={{ flexDirection: 'row', height: 30, alignItems: 'center' }}>
+                        <View style={{ padding: 10 }}>
+                            <ProductInputQuantity
+                                value={qty}
+                                handleButtonPressed={handleButtonClickQty}
+                                onChangeText={handleChangeQty}
+                            />
+                        </View>
+                        <Button
+                            title="加入购物车"
+                            type="primary"
+                            style={styles.btnAddCart}
+                            onPress={handleAddToCart}
+                        />
+                    </View>
                 </View>
             </View>
         </>
@@ -143,9 +173,8 @@ const styles = StyleSheet.create({
     },
 
     btnAddCart: {
-        marginHorizontal: 15,
         borderRadius: 50,
-        width: 150,
+        width: 120,
     },
     main: {
         flex: 1,
@@ -154,10 +183,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
         flexDirection: 'row',
+        justifyContent: 'space-around',
         height: 70,
-        paddingRight: 15,
-        paddingLeft: 60,
     },
 });

@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import navigationNames from '@/navigation/navigationNames';
 import { colors } from '@/theme';
 import { OrderCard } from '@/components/order';
+import { MemberCard } from '@/components/member';
 
 const ICON_SIZE = 20;
 
@@ -61,6 +62,7 @@ const ProfileScreen = () => {
 
     const menuListElement = menus.map((menu, i) => (
         <TouchableOpacity
+            activeOpacity={0.8}
             key={`menu-${i}`}
             style={styles.menuList}
             onPress={() => navigation.navigate(menu.to)}
@@ -77,13 +79,14 @@ const ProfileScreen = () => {
                     <Avatar user={currentUser} />
                     <Text style={styles.name}>{currentUser.name}</Text>
                 </View>
-                <View style={{ paddingVertical: 5 }}>
-                    <OrderCard />
+                <OrderCard />
+                <View style={{ paddingVertical: 10 }}>
+                    <MemberCard />
                 </View>
                 <View style={styles.menu}>{menuListElement}</View>
             </View>
             <View style={styles.bottomContainer}>
-                <TouchableOpacity style={styles.btnLogOut} onPress={onLogOut}>
+                <TouchableOpacity activeOpacity={0.8} style={styles.btnLogOut} onPress={onLogOut}>
                     <Text style={styles.btnText}> 退出登录 </Text>
                 </TouchableOpacity>
             </View>
@@ -109,8 +112,6 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     menu: {
-        marginVertical: 10,
-        marginTop: 20,
         backgroundColor: colors.white,
         borderRadius: 20,
     },

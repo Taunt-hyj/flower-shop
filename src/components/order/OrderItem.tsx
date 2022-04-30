@@ -21,6 +21,7 @@ const OrderItem = ({ order }: Props) => {
     const renderOrderProducts = () => {
         return order.items.map((order) => (
             <TouchableOpacity
+                activeOpacity={0.8}
                 style={styles.productInfo}
                 key={order.product._id}
                 onPress={() =>
@@ -29,7 +30,7 @@ const OrderItem = ({ order }: Props) => {
                     })
                 }
             >
-                <View style={{ paddingVertical: 5, paddingHorizontal: 15 }} >
+                <View style={{ paddingHorizontal: 15 }} >
                     <Image style={styles.image} source={{ uri: order.product.imageURL }} />
                 </View>
                 <View style={styles.main}>
@@ -126,7 +127,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 10,
         justifyContent: 'center',
-
     },
     name: {
         fontSize: 15,

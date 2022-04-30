@@ -35,9 +35,6 @@ const SPINNER_SIZE = 35;
 const SearchScreen = () => {
     const route = useRoute<RouteProp<Record<string, RouteParams>, string>>();
 
-
-
-
     const payload: Payload = {};
 
     const category = route.params?.category ? route.params.category : '';
@@ -125,6 +122,7 @@ const SearchScreen = () => {
                             onChangeText={handleChangeText}
                         />
                         <TouchableOpacity
+                            activeOpacity={0.8}
                             style={styles.filterIcon}
                             onPress={() => setIsOpenModal(true)}
                         >
@@ -166,7 +164,7 @@ const SearchScreen = () => {
                             )}
                             {!hasLoadMore && (
                                 <View style={styles.msg}>
-                                    <Text style={styles.msgText}>No more products to load.</Text>
+                                    <Text style={styles.msgText}>已经到低了...</Text>
                                 </View>
                             )}
                         </View>
@@ -217,9 +215,9 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     msgText: {
-        fontSize: 15,
+        fontSize: 12,
         textAlign: 'center',
-        color: colors.primary,
+        color: colors.dark,
     },
     productContainer: {
         padding: 15,

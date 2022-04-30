@@ -51,7 +51,7 @@ const CartScreen = () => {
             </View>
             <View style={styles.bottomContainer}>
                 <CartSubTotal />
-                <TouchableOpacity onPress={() => navigation.navigate(navigationNames.checkoutScreen)}>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate(navigationNames.checkoutScreen)}>
                     <Text style={styles.subtext}> 购买 </Text>
                 </TouchableOpacity>
             </View>
@@ -64,13 +64,13 @@ export default CartScreen;
 const styles = StyleSheet.create({
     container: {
         padding: 10,
+        paddingTop: 28,
         flex: 1,
-        backgroundColor: colors.lighterGray,
+        backgroundColor: '#f9f9f9',
     },
     titleView: {
         paddingHorizontal: 20,
-        paddingTop: 60,
-        paddingBottom: 10,
+        paddingVertical: 20,
     },
     title: {
         fontSize: 28,
@@ -78,8 +78,7 @@ const styles = StyleSheet.create({
     },
     cartList: {
         flex: 4,
-        paddingTop: 30,
-        paddingHorizontal: 18,
+        paddingHorizontal: 5,
     },
     bottomContainer: {
         flexDirection: 'row',

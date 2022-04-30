@@ -13,22 +13,26 @@ interface Props {
 
 const categoryFilterItems = [
     {
-        value: '鲜花',
+        value: '精品鲜花',
         name: 'men',
     },
     {
-        value: '花架',
+        value: '生日祝福',
         name: 'women',
+    },
+    {
+        value: '表白求婚',
+        name: 'love',
     },
 ];
 
 const priceFilterItems = [
     {
-        value: '从高到低',
+        value: '从低到高',
         name: 'price',
     },
     {
-        value: '从低到高',
+        value: '从高到低',
         name: '-price'
     },
 ];
@@ -85,12 +89,14 @@ const SearchFilterModal = ({
                 </View>
                 <View style={styles.bottom}>
                     <TouchableOpacity
+                        activeOpacity={0.8}
                         style={styles.bottomBtn}
                         onPress={handleResetFilter}
                     >
                         <Text style={styles.bottomText}> 重置 </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
+                        activeOpacity={0.8}
                         onPress={handleFilterApply}
                         style={styles.bottomBtn}
                     >
