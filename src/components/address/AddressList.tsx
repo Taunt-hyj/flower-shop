@@ -1,31 +1,19 @@
 import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
+import { useAddress } from '@/contexts';
+import AddressItems from './AddressItems'
 
-import AdressItem from './AdressItem';
+interface Props {
+    choose: boolean;
+}
 
-const adressItems = [
-    {
-        _id: 1,
-        address: '123124141',
-        name: '123',
-        phone: '1214124124'
-    },
-    {
-        _id: 2,
-        address: '123124141',
-        name: '123',
-        phone: '1214124124'
-    }
-];
-
-
-const CartList: React.FC = () => {
-
+const CartList: React.FC<Props> = (choose) => {
+    const { addressItems } = useAddress();
     return (
         <View style={styles.container}>
             <FlatList
-                data={adressItems}
-                renderItem={(item) => <AdressItem addressItem={item.item} />}
+                data={addressItems}
+                renderItem={(item) => <AddressItems addressItem={item.item} choose={choose} />}
                 keyExtractor={(item) => item._id}
                 showsVerticalScrollIndicator={false}
             />

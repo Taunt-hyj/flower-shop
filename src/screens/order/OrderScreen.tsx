@@ -69,22 +69,14 @@ const CheckoutScreen = () => {
             case 'all':
                 return <OrderList orders={orders} />;
             case 'pay':
-                orders.map((value) => {
-                    if (value.state === 'pay')
-                        goods.push(value);
-                });
+                goods = orders.filter((value) => value.state === 'pay');
+                console.log(goods)
                 return <OrderList orders={goods} />;
             case 'goods':
-                orders.map((value) => {
-                    if (value.state === 'goods')
-                        goods.push(value);
-                });
+                goods = orders.filter((value) => value.state === 'goods');
                 return <OrderList orders={goods} />;
             case 'sale':
-                orders.map((value) => {
-                    if (value.state === 'sale')
-                        goods.push(value);
-                });
+                goods = orders.filter((value) => value.state === 'sale');
                 return <OrderList orders={goods} />;
             default:
                 return null;

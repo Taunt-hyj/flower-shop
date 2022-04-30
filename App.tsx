@@ -4,6 +4,7 @@ import {
   AuthProvider,
   ToastProvider,
   CartProvider,
+  AddressProvider,
 } from '@/contexts';
 
 export default function App() {
@@ -11,7 +12,9 @@ export default function App() {
     <ToastProvider>
       <AuthProvider>
         <CartProvider>
-          <AppNavigation />
+          <AddressProvider>
+            <AppNavigation />
+          </AddressProvider>
         </CartProvider>
       </AuthProvider>
     </ToastProvider>

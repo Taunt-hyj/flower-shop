@@ -6,17 +6,24 @@ import {
     Text,
     View,
 } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import navigationNames from '@/navigation/navigationNames';
 import { AddressList } from '@/components/address';
+
+interface RouteParams {
+    choose: boolean;
+}
 
 const AddressScreen = () => {
     const navigation = useNavigation();
 
+    const route = useRoute<RouteProp<Record<string, RouteParams>, string>>();
+    const choose = route?.params?.choose;
+
     return (
         <View style={{ flex: 1, }}>
             <View style={styles.addressList}>
-                <AddressList />
+                <AddressList choose={choose} />
             </View>
             <TouchableOpacity onPress={() => navigation.navigate(navigationNames.editAddressScreen)}>
                 <View style={styles.bottomContainer}>

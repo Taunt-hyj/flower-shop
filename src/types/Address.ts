@@ -2,7 +2,7 @@ export interface AddressItem {
     _id: string;
     address: string;
     name: string;
-    phone: number
+    phone: string
 }
 
 export interface Address {

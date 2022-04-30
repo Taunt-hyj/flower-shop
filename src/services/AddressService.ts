@@ -12,11 +12,11 @@ const getAddress = async (): Promise<Address> => {
 };
 
 const addAddressItem = async (
-    addressId: string, address: string, name: string, phone: string
+    address: string, name: string, phone: string
 ): Promise<AddressItem> => {
     try {
         const url = `/address`;
-        const payload = { addressId, address, name, phone };
+        const payload = { address, name, phone };
         const { data } = await apiClient.post(url, payload);
         return data.data;
     } catch (error) {
@@ -34,9 +34,10 @@ const removeAddressItem = async (addressId: string): Promise<void> => {
 
 const updateAddressItem = async (
     addressId: string, address: string, name: string, phone: string
-): Promise<void> => {
+): Promise<AddressItem> => {
     try {
-        return await apiClient.put('/address', { addressId, address, name, phone });
+        const { data } = await apiClient.put('/address', { addressId, address, name, phone });
+        return data.data;
     } catch (error) {
         throw new Error(catchError(error));
     }

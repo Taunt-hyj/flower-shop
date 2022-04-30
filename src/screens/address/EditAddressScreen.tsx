@@ -1,31 +1,33 @@
 import { TextInput, Button, PageLoader } from '@/components/ui';
 import { useToast } from '@/contexts';
-import { AuthService } from '@/services';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import React, { useState } from 'react';
+import { useAddress } from '@/contexts';
 import { View, StyleSheet } from 'react-native';
+import { AddressItem } from '@/types';
 
 interface RouteParams {
-    id: string;
+    addressItem: AddressItem;
 }
 
 const EditAddressScreen = () => {
     const { showToast } = useToast();
+    const { addAddressItem, updateAddressItem } = useAddress();
     const navigation = useNavigation();
     const route = useRoute<RouteProp<Record<string, RouteParams>, string>>();
+    const item = route?.params?.addressItem;
 
     const initialState = {
-        adress: '',
-        name: '',
-        phone: '',
+        address: item?.address || '',
+        name: item?.name || '',
+        phone: item?.phone || '',
     };
-
 
     const [address, setaddress] = useState(initialState);
     const [submitting, setSubmitting] = useState(false);
 
     const handleSubmit = () => {
-        if (!address.adress || !address.name || !address.phone) {
+        if (!address.address || !address.name || !address.phone) {
             showToast('error', '请填写完整！');
             return;
         }
@@ -35,9 +37,14 @@ const EditAddressScreen = () => {
     const handleChangePassword = async () => {
         try {
             setSubmitting(true);
-            // await AuthService.changePassword(password);
+            if (item?._id) {
+                await updateAddressItem(item._id, address.address, address.name, address.phone);
+            }
+            else {
+                await addAddressItem(address.address, address.name, address.phone);
+            }
             setaddress(initialState);
-            showToast('success', '增加新地址成功');
+            showToast('success', '保存新地址成功');
             navigation.goBack();
         } catch (error) {
             showToast('error', error.message);
@@ -59,8 +66,8 @@ const EditAddressScreen = () => {
             {pageLoaderElement}
             <TextInput
                 placeholder="地址"
-                value={address.adress}
-                onChangeText={(val) => handleChange('adress', val)}
+                value={address.address}
+                onChangeText={(val) => handleChange('address', val)}
             />
             <TextInput
                 placeholder="姓名"

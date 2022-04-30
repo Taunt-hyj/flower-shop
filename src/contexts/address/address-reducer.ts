@@ -5,7 +5,7 @@ import {
     REMOVE_ADDRESS,
     SET_ADDRESS,
     CLEAR_ADDRESS,
-    UPDATE_QTY_ADDRESS,
+    UPDATE_ADDRESS,
     SET_ADDRESS_ERROR,
 } from './address-types';
 
@@ -50,14 +50,10 @@ export default (state: State, action: Action): State => {
             };
         }
 
-        case UPDATE_QTY_ADDRESS: {
+        case UPDATE_ADDRESS: {
             return {
                 ...state,
-                addressItems: updateAddressItemQuantityToAddress(
-                    state.addressItems,
-                    action.payload.addressItem,
-                    action.payload.newQuantity
-                ),
+                addressItems: updateAddressItemQuantityToAddress(state.addressItems, action.payload),
             };
         }
 

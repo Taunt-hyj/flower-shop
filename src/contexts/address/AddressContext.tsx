@@ -15,7 +15,7 @@ import {
     CLEAR_ADDRESS,
     REMOVE_ADDRESS,
     SET_ADDRESS,
-    UPDATE_QTY_ADDRESS,
+    UPDATE_ADDRESS,
     SET_ADDRESS_ERROR,
 } from './address-types';
 
@@ -23,10 +23,10 @@ interface InitialStateType {
     addressItems: AddressItem[];
     loading: boolean;
     error: null | string;
-    addAddressItem: (product: Product, quantity: number) => void;
+    addAddressItem: (address: string, name: string, phone: string) => void;
     removeAddressItem: (addressItemToRemove: AddressItem) => void;
     clearAddress: () => void;
-    updateAddressItemQty: (addressItem: AddressItem, newQuantity: number) => void;
+    updateAddressItem: (addressId: string, address: string, name: string, phone: string) => void;
 }
 
 export const AddressContext = createContext<InitialStateType>({
@@ -36,7 +36,7 @@ export const AddressContext = createContext<InitialStateType>({
     addAddressItem: () => null,
     removeAddressItem: () => null,
     clearAddress: () => null,
-    updateAddressItemQty: () => null,
+    updateAddressItem: () => null,
 });
 
 export const AddressProvider: React.FC = ({ children }) => {
@@ -65,20 +65,22 @@ export const AddressProvider: React.FC = ({ children }) => {
         }
     }, [isAuthenticated]);
 
-    const addAddressItem = async (product: Product, quantity: number) => {
-        const results = await AddressService.addAddressItem(quantity, product._id);
-        const addressItem: AddressItem = { _id: results._id, quantity, product };
+    const addAddressItem = async (address: string, name: string, phone: string) => {
+        const results = await AddressService.addAddressItem(address, name, phone);
+        const addressItem: AddressItem = results;
         dispatch({ type: ADD_ADDRESS, payload: addressItem });
     };
 
     const removeAddressItem = async (addressItem: AddressItem) => {
-        await AddressService.removeAddressItem(addressItem.product._id);
+        console.log(addressItem)
+        await AddressService.removeAddressItem(addressItem._id);
         dispatch({ type: REMOVE_ADDRESS, payload: addressItem });
     };
 
-    const updateAddressItemQty = async (addressItem: AddressItem, newQuantity: number) => {
-        await AddressService.updateQuantityCarItem(addressItem.product._id, newQuantity);
-        dispatch({ type: UPDATE_QTY_ADDRESS, payload: { addressItem, newQuantity } });
+    const updateAddressItem = async (addressId: string, address: string, name: string, phone: string) => {
+        const results = await AddressService.updateAddressItem(addressId, address, name, phone);
+        const addressItem: AddressItem = results;
+        dispatch({ type: UPDATE_ADDRESS, payload: { addressItem } });
     };
 
     const clearAddress = () => {
@@ -91,7 +93,7 @@ export const AddressProvider: React.FC = ({ children }) => {
             addAddressItem,
             removeAddressItem,
             clearAddress,
-            updateAddressItemQty,
+            updateAddressItem,
         }),
         [state]
     );
