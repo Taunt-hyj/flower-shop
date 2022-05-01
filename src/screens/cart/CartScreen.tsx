@@ -63,22 +63,21 @@ export default CartScreen;
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
-        paddingTop: 28,
         flex: 1,
-        backgroundColor: '#f9f9f9',
+        paddingHorizontal: 10,
+        backgroundColor: colors.lighterGray,
     },
     titleView: {
         paddingHorizontal: 20,
-        paddingVertical: 20,
+        paddingVertical: 10,
     },
     title: {
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: 'bold',
     },
     cartList: {
         flex: 4,
-        paddingHorizontal: 5,
+        paddingHorizontal: 10,
     },
     bottomContainer: {
         flexDirection: 'row',
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         marginHorizontal: 15,
         marginVertical: 5,
-        borderColor: colors.lightGray,
+        borderColor: colors.lighterGray,
         borderRadius: 50,
     },
     subtext: {

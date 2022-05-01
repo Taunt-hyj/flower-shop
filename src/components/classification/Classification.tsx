@@ -10,7 +10,7 @@ const Classification = () => {
     const navigation = useNavigation();
 
     return (
-        <View style={{ padding: 5, borderRadius: 20, backgroundColor: colors.white }}>
+        <View style={{ padding: 5, borderRadius: 15, backgroundColor: colors.white }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 10, paddingHorizontal: 30 }}>
                 <TouchableOpacity activeOpacity={0.8} key={0} onPress={() => navigation.navigate(navigationNames.searchScreen, { category: 'men' })}>
                     <View style={{ alignItems: 'center', justifyContent: 'space-between' }}>

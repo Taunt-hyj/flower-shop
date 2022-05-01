@@ -11,7 +11,6 @@ interface Props {
 }
 
 const OrderList = ({ orders }: Props) => {
-
     const navigation = useNavigation();
 
     if (orders.length === 0) {
@@ -43,7 +42,6 @@ export default OrderList;
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 15,
     },
     emptyText: {
         textAlign: 'center',

@@ -6,17 +6,23 @@ import {
   CartProvider,
   AddressProvider,
 } from '@/contexts';
+import { StatusBar } from 'react-native';
+import { colors } from '@/theme';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 
 export default function App() {
   return (
     <ToastProvider>
       <AuthProvider>
         <CartProvider>
-          <AddressProvider>
-            <AppNavigation />
-          </AddressProvider>
+          <ActionSheetProvider>
+            <AddressProvider>
+              <StatusBar barStyle="dark-content" backgroundColor={colors.lighterGray} />
+              <AppNavigation />
+            </AddressProvider>
+          </ActionSheetProvider>
         </CartProvider>
       </AuthProvider>
-    </ToastProvider>
+    </ToastProvider >
   );
 }

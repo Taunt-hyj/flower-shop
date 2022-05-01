@@ -43,11 +43,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#f5f6f8'
+        backgroundColor: colors.lighterGray
     },
     addressList: {
         flex: 4,
-        paddingTop: 30,
         paddingHorizontal: 18,
     },
     bottomContainer: {
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         marginHorizontal: 15,
         marginVertical: 20,
-        borderColor: colors.lightGray,
+        borderColor: colors.lighterGray,
         borderRadius: 50,
     },
     subtext: {

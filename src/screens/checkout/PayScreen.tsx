@@ -15,6 +15,7 @@ import Checkbox from 'expo-checkbox';
 import { CheckoutService } from '@/services';
 import { AuthService } from '@/services';
 import { useAuth } from '@/contexts';
+import { AntDesign } from '@expo/vector-icons';
 
 const PayScreen = () => {
     const { updateCurrentUser } = useAuth();
@@ -22,11 +23,6 @@ const PayScreen = () => {
     const navigation = useNavigation();
     const route = useRoute<RouteProp<Record<string, any>, string>>();
     const _id = route?.params?.results?._id;
-
-    navigation.setOptions({
-        title: '',
-        headerTransparent: true,
-    });
 
     const _onItemClick = (index: number) => {
         setIndexItem(index);
@@ -37,8 +33,8 @@ const PayScreen = () => {
                 <View style={styles.checkBox}>
                     {
                         index === 0
-                            ? <Image source={require('@/assets/images/icon_alipay.png')} style={styles.image} />
-                            : <Image source={require('@/assets/images/icon_wechat_pay.png')} style={styles.image} />
+                            ? <AntDesign style={{ marginHorizontal: 50 }} name="wechat" size={40} color="black" />
+                            : <AntDesign style={{ marginHorizontal: 50 }} name="alipay-square" size={40} color="black" />
                     }
                     <Text style={{ fontSize: 20, paddingVertical: 3 }}>{label}</Text>
                     <Checkbox
@@ -71,7 +67,7 @@ const PayScreen = () => {
         <View style={{ flex: 1, }}>
             <ScrollView style={styles.container}>
                 <View style={{
-                    padding: 20, marginTop: 100,
+                    padding: 20, marginTop: 40,
                 }}>
                     <Text style={{ fontSize: 20, paddingVertical: 3 }}>选择支付方式</Text>
                 </View>
@@ -94,7 +90,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#f5f6f8'
+        backgroundColor: colors.lighterGray
     },
 
     checkBox: {
@@ -117,7 +113,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         marginHorizontal: 15,
         marginVertical: 20,
-        borderColor: colors.lightGray,
+        borderColor: colors.lighterGray,
         borderRadius: 50,
     },
     subtext: {

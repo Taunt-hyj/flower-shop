@@ -8,6 +8,7 @@ import { Button } from '../ui';
 import React from 'react';
 import { Alert, Linking, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useToast } from '@/contexts';
+import { useActionSheet } from '@expo/react-native-action-sheet';
 
 interface Props {
     order: Order;
@@ -16,6 +17,7 @@ interface Props {
 const OrderItem = ({ order }: Props) => {
     const navigation = useNavigation();
     const { showToast } = useToast();
+    const { showActionSheetWithOptions } = useActionSheet();
 
     const formattedDate = formatDate(order.createdAt);
     const renderOrderProducts = () => {
@@ -42,19 +44,25 @@ const OrderItem = ({ order }: Props) => {
         ));
     };
 
+    const cancelButtonIndex = 1;
+
     const callPhone = (phone) => {
         const tel = `tel:${phone}`;
-        Alert.alert('联系方式', phone, [
-            { text: '取消' },
+        showActionSheetWithOptions(
             {
-                text: '确定',
-                onPress: () => {
-                    Linking.canOpenURL(tel).then((supported) => {
-                        if (!supported) showToast('error', `您的设备不支持该功能，请手动拨打 ${phone}`)
-                        else return Linking.openURL(tel)
-                    }).catch(error => showToast('error', error))
-                }
-            }])
+                title: '联系电话',
+                options: [`骑手电话：${phone}`, '取消'],
+                cancelButtonIndex,
+                titleTextStyle: { fontSize: 13 },
+                textStyle: { fontSize: 15 },
+            },
+            (buttonIndex) => {
+                if (buttonIndex === 0)
+                    Linking.canOpenURL(tel)
+                        .then(() => Linking.openURL(tel))
+                        .catch(error => showToast('error', error))
+            }
+        );
     }
     const renderButton = (order) => {
         switch (order.state) {
@@ -74,7 +82,7 @@ const OrderItem = ({ order }: Props) => {
                     <View>
                         <Button
                             title='催单'
-                            onPress={() => callPhone('13456789876')}
+                            onPress={() => callPhone('15543216789')}
                             style={{ height: 24 }}
                             type={'default'}
                         />

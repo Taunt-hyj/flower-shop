@@ -8,12 +8,12 @@ import { Button, ErrorMessage } from '@/components/ui';
 import { useAuth, useCart, useToast } from '@/contexts';
 import navigationNames from '@/navigation/navigationNames';
 import { ProductService } from '@/services';
-import { colors } from '@/theme';
 import { Product, Products } from '@/types';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { Linking, Animated, StyleSheet, View, Alert, TouchableWithoutFeedback } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Linking, Animated, StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { useActionSheet } from '@expo/react-native-action-sheet';
 
 interface RouteParams {
     id: string;
@@ -23,6 +23,7 @@ const ProductScreen = () => {
     const { showToast } = useToast();
     const { isAuthenticated } = useAuth();
     const { addCartItem } = useCart();
+    const { showActionSheetWithOptions } = useActionSheet();
 
     const route = useRoute<RouteProp<Record<string, RouteParams>, string>>();
     const navigation = useNavigation();
@@ -107,20 +108,25 @@ const ProductScreen = () => {
         );
     }
 
+    const cancelButtonIndex = 1;
 
     const callPhone = (phone) => {
         const tel = `tel:${phone}`;
-        Alert.alert('联系方式', phone, [
-            { text: '取消' },
+        showActionSheetWithOptions(
             {
-                text: '确定',
-                onPress: () => {
-                    Linking.canOpenURL(tel).then((supported) => {
-                        if (!supported) showToast('error', `您的设备不支持该功能，请手动拨打 ${phone}`)
-                        else return Linking.openURL(tel)
-                    }).catch(error => showToast('error', error))
-                }
-            }])
+                title: '联系电话',
+                options: [`商家电话：${phone}`, '取消'],
+                cancelButtonIndex,
+                titleTextStyle: { fontSize: 13 },
+                textStyle: { fontSize: 15 },
+            },
+            (buttonIndex) => {
+                if (buttonIndex === 0)
+                    Linking.canOpenURL(tel)
+                        .then(() => Linking.openURL(tel))
+                        .catch(error => showToast('error', error))
+            }
+        );
     }
 
     return (
@@ -138,7 +144,7 @@ const ProductScreen = () => {
 
                 </Animated.ScrollView>
                 <View style={styles.bottom}>
-                    <TouchableWithoutFeedback onPress={() => callPhone('13456787654')}>
+                    <TouchableWithoutFeedback onPress={() => callPhone('13456789012')}>
                         <AntDesign name="customerservice" size={24} color="black" />
                     </TouchableWithoutFeedback>
                     <View style={{ flexDirection: 'row', height: 30, alignItems: 'center' }}>

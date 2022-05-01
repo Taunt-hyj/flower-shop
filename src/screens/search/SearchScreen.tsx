@@ -189,14 +189,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.lighterGray,
-        paddingTop: 30,
     },
     topSearchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 15,
-        marginVertical: 15,
+        marginVertical: 5,
     },
     filterIcon: {
         marginLeft: 5,
@@ -220,7 +219,7 @@ const styles = StyleSheet.create({
         color: colors.dark,
     },
     productContainer: {
-        padding: 15,
+        padding: 10,
     },
     searchTotalContainer: {
         marginBottom: 10,

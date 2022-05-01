@@ -11,6 +11,7 @@ import {
 } from '@/screens';
 import navigationNames from './navigationNames';
 import { tabScreenOptions } from './NavigationHelper';
+import { colors } from '@/theme';
 
 
 const Tab = createBottomTabNavigator();
@@ -43,7 +44,16 @@ const CartStackScreen = () => {
 
 const ProfileStackScreen = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: colors.lighterGray,
+                },
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                },
+            }}
+        >
             <Stack.Screen
                 name={navigationNames.profileScreen}
                 component={ProfileScreen}

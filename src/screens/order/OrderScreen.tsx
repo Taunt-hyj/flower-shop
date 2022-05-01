@@ -15,8 +15,8 @@ const renderTabBar = props => (
         {...props}
         indicatorStyle={{ backgroundColor: colors.orgin }}
         labelStyle={{ color: 'black' }}
-        style={{ backgroundColor: colors.lightGray, paddingTop: 80 }}
-        pressColor={colors.lightGray}
+        style={{ height: 40, backgroundColor: colors.lighterGray }}
+        pressColor={colors.lighterGray}
     />
 );
 
@@ -30,11 +30,6 @@ const CheckoutScreen = () => {
 
     const routeId = useRoute<RouteProp<Record<string, RouteParams>, string>>();
     const _routeId = routeId.params.id;
-
-    navigation.setOptions({
-        title: '',
-        headerTransparent: true,
-    });
     const [index, setIndex] = React.useState(_routeId);
     const [routes] = React.useState([
         { key: 'all', title: '全部' },

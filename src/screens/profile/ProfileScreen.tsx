@@ -13,12 +13,12 @@ const ICON_SIZE = 20;
 
 const menus = [
     {
-        title: '修改地址',
-        to: navigationNames.addressScreen,
-    },
-    {
         title: '编辑资料',
         to: navigationNames.editProfileScreen,
+    },
+    {
+        title: '修改地址',
+        to: navigationNames.addressScreen,
     },
     {
         title: '更改密码',

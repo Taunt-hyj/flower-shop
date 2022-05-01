@@ -3,12 +3,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import navigationNames from './navigationNames';
+import { colors } from '@/theme';
 
 const RootStack = createNativeStackNavigator();
 
 export default function () {
     return (
-        <RootStack.Navigator>
+        <RootStack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: colors.lighterGray,
+                },
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                },
+            }}
+        >
             <RootStack.Screen
                 name={navigationNames.loginScreen}
                 component={LoginScreen}

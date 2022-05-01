@@ -1,6 +1,6 @@
 const getEnvVars = () => {
     return {
-        apiUrl: 'http://192.168.3.50:5000/api',
+        apiUrl: 'http://8.130.97.162:5000/api',
     };
 };
 

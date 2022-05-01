@@ -30,11 +30,6 @@ const CheckoutScreen = () => {
     const route = useRoute<RouteProp<Record<string, RouteParams>, string>>();
     let item = route?.params?.addressItem;
 
-    navigation.setOptions({
-        title: '',
-        headerTransparent: true,
-    });
-
     const _renderItem = (label1, label2) => {
         return (
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
@@ -63,7 +58,7 @@ const CheckoutScreen = () => {
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scroll}>
-                <View style={{ paddingVertical: 20 }}>
+                <View style={{ paddingVertical: 10 }}>
                     <AddressButton />
                 </View>
                 <View style={{ borderRadius: 20, backgroundColor: colors.white }}>
@@ -71,7 +66,7 @@ const CheckoutScreen = () => {
                     {_renderItem('订单备注', '请输入 >')}
                     {_renderItem('发票抬头', '不需要开发票 >')}
                 </View>
-                <View style={{ alignItems: 'center', paddingVertical: 10 }}>
+                <View style={{ alignItems: 'center', paddingVertical: 20 }}>
                     <Text style={{ fontSize: 12, color: '#a3a3a3' }}>品质保障·急速退款·无接触配送·资质规则</Text>
                 </View>
             </ScrollView >
@@ -91,8 +86,7 @@ export default CheckoutScreen;
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
-        paddingTop: 90,
+        paddingHorizontal: 10,
         flex: 1,
         backgroundColor: colors.lighterGray,
     },

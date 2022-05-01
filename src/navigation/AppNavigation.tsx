@@ -15,6 +15,7 @@ import {
 } from '@/screens';
 import { AuthLoading } from '@/components/auth';
 import { useAuth } from '@/contexts';
+import { colors } from '@/theme';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +28,13 @@ export const AppNavigation = () => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            >
                 <Stack.Screen
                     name={navigationNames.rootScreen}
                     component={HomeTabNavigator}
@@ -51,27 +58,52 @@ export const AppNavigation = () => {
                 <Stack.Screen
                     name={navigationNames.checkoutScreen}
                     component={CheckoutScreen}
-                    options={{ headerTitle: '确认订单' }}
+                    options={{
+                        headerTitle: '确认订单',
+                        headerStyle: {
+                            backgroundColor: colors.lighterGray,
+                        },
+                    }}
                 />
                 <Stack.Screen
                     name={navigationNames.payScreen}
                     component={PayScreen}
-                    options={{ headerTitle: '付款' }}
+                    options={{
+                        headerTitle: '付款',
+                        headerStyle: {
+                            backgroundColor: colors.lighterGray,
+                        },
+                    }}
                 />
                 <Stack.Screen
                     name={navigationNames.addressScreen}
                     component={AddressScreen}
-                    options={{ headerTitle: '地址' }}
+                    options={{
+                        headerTitle: '地址',
+                        headerStyle: {
+                            backgroundColor: colors.lighterGray,
+                        },
+                    }}
                 />
                 <Stack.Screen
                     name={navigationNames.editAddressScreen}
                     component={EditAddressScreen}
-                    options={{ headerTitle: '编辑地址' }}
+                    options={{
+                        headerTitle: '编辑地址',
+                        headerStyle: {
+                            backgroundColor: colors.lighterGray,
+                        },
+                    }}
                 />
                 <Stack.Screen
                     name={navigationNames.orderScreen}
                     component={OrderScreen}
-                    options={{ headerTitle: '订单' }}
+                    options={{
+                        headerTitle: '订单',
+                        headerStyle: {
+                            backgroundColor: colors.lighterGray,
+                        },
+                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
